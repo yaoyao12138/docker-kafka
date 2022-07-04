@@ -1,0 +1,16 @@
+#
+# Security providers used when global crypto-policies are set to FIPS.
+#
+security.provider.1=org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider
+security.provider.2=com.sun.net.ssl.internal.ssl.Provider
+security.provider.3=sun.security.provider.Sun
+
+#
+# Default keystore type used when global crypto-policies are set to FIPS.
+#
+security.keystore.type=BCFKS
+
+#
+# A list of known strong SecureRandom implementations.
+#
+securerandom.strongAlgorithms=NativePRNGBlocking:SUN,DRBG:SUN
