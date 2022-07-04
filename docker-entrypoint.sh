@@ -2,6 +2,8 @@
 
 set -o allexport
 
+: "${KAFKA_JVM_PERFORMANCE_OPTS:=-server -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:G1HeapRegionSize=16M -XX:MaxGCPauseMillis=20 -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -Djava.awt.headless=true}"
+
 
 if [[ "${FIPS_MODE}" = "true" ]]; then
   echo "INFO: Running in FIPS approved-only mode (org.bouncycastle.fips.approved_only=true)"
