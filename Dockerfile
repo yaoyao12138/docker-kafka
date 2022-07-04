@@ -41,5 +41,6 @@ COPY --from=kafka_dist /var/tmp/kafka_$scala_version-$kafka_version ${KAFKA_HOME
 RUN chmod a+x ${KAFKA_HOME}/bin/*.sh
 
 COPY assets/ "$KAFKA_HOME"
+COPY docker-entrypoint.sh /
 #CMD ["kafka-server-start.sh"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
