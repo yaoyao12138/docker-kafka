@@ -33,7 +33,8 @@ ENV KAFKA_VERSION=$kafka_version \
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
-RUN mkdir ${KAFKA_HOME} && apt-get update && apt-get install curl -y && apt-get clean
+#RUN mkdir ${KAFKA_HOME} && apt-get update && apt-get install curl -y && apt-get clean
+RUN mkdir ${KAFKA_HOME}
 
 COPY --from=kafka_dist /var/tmp/kafka_$scala_version-$kafka_version ${KAFKA_HOME}
 
