@@ -10,7 +10,7 @@ ENV kafka_distro=kafka_$scala_version-$kafka_version.tgz
 ENV kafka_distro_asc=$kafka_distro.asc
 
 RUN set -eux; \
-        microdnf install -y gnupg wget \
+        microdnf install -y gnupg wget gzip tar \
         && microdnf clean all; 
 
 WORKDIR /var/tmp
