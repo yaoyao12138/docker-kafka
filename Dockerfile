@@ -1,5 +1,9 @@
 FROM alpine:latest AS kafka_dist
 
+ARG base_version=v0.5.0
+
+FROM containers.instana.io/instana/product/jdk11:$base_version
+
 ARG scala_version=2.13
 ARG kafka_version=3.1.0
 ARG kafka_distro_base_url=https://dlcdn.apache.org/kafka
