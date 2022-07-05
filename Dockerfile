@@ -9,7 +9,9 @@ ARG kafka_distro_base_url=https://dlcdn.apache.org/kafka
 ENV kafka_distro=kafka_$scala_version-$kafka_version.tgz
 ENV kafka_distro_asc=$kafka_distro.asc
 
-RUN apk add --no-cache gnupg
+RUN set -eux; \
+        microdnf install -y gnupg wget \
+        && microdnf clean all; 
 
 WORKDIR /var/tmp
 
@@ -38,7 +40,7 @@ ENV PATH=${PATH}:${KAFKA_HOME}/bin
 #RUN mkdir ${KAFKA_HOME} && apt-get update && apt-get install curl -y && apt-get clean
 RUN mkdir ${KAFKA_HOME}
 
-COPY --from=kafka_dist /var/tmp/kafka_$scala_version-$kafka_version ${KAFKA_HOME}
+COPY /var/tmp/kafka_$scala_version-$kafka_version ${KAFKA_HOME}
 
 RUN chmod a+x ${KAFKA_HOME}/bin/*.sh
 
