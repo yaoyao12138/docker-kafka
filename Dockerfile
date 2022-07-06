@@ -42,7 +42,7 @@ RUN --mount=type=secret,id=artifactory_creds \
     && gpg --import KEYS \
     && gpg --verify $kafka_distro_asc $kafka_distro \
     && tar -xzf $kafka_distro -C ${KAFKA_HOME} --strip-components=1 \
-    && rm kafka.tgz \
+    && rm $kafka_distro \
     && rm -rf ${KAFKA_HOME}/bin/windows \
     && curl -u "$ARTIFACTORY_CREDS" -fsSLo "${KAFKA_HOME}/libs/bc-fips-$bcfips_version.jar" "$artifact_base/bc-fips/$bcfips_version/bc-fips-$bcfips_version.jar" \
     && sha256sum -c - <<< "$bcfips_sha256 ${KAFKA_HOME}/libs/bc-fips-$bcfips_version.jar"
