@@ -34,7 +34,7 @@ RUN set -eux; \
 ARG bcfips_sha256="5f4d12234904c61c6f12d74b6cf4b3b5d32a2c3375d67367735be000bdd979ab"
 ARG artifact_base="https://artifact-rnd.instana.io/artifactory/instana-private/org/bouncycastle"
 RUN --mount=type=secret,id=artifactory_creds \
-    export ARTIFACTORY_CREDS=jin.song:AKCp8k8PiN21K1uhAEp6oiD3DqqWgBTbgNBvpawE7civHJbVbJNdArc2hw95akB3qKi3pTAxT \
+    export ARTIFACTORY_CREDS=jin.song:AKCp8k8PiN21K1uhAEp6oiD3DqqWgBTbgNBvpawE7civHJbVbJNdArc2hw95akB3qKi3pTAxT; \
     && mkdir -p ${KAFKA_HOME}\
     && wget -q $kafka_distro_base_url/$kafka_version/$kafka_distro \
     && wget -q $kafka_distro_base_url/$kafka_version/$kafka_distro_asc \
