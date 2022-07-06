@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.4
+
 ARG base_version=v0.5.0
 
 FROM containers.instana.io/instana/product/jdk11:$base_version
