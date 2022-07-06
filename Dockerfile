@@ -66,7 +66,7 @@ ENV PATH=${PATH}:${KAFKA_HOME}/bin
 RUN chmod a+x ${KAFKA_HOME}/bin/*.sh
 
 WORKDIR $KAFKA_HOME
-COPY assets/ "$KAFKA_HOME"
+COPY assets/ "$KAFKA_HOME"/config
 COPY docker-entrypoint.sh /
 #CMD ["kafka-server-start.sh"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
