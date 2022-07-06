@@ -17,7 +17,7 @@ set +o allexport
 main() {
 
   echo "Starting Kafka..."
-  exec kafka-server-start.sh /opt/kafka/server.properties "$@"
+  exec kafka-server-start.sh ${KAFKA_HOME}/config/server.properties "$@"
 }
 
 main "$@"
