@@ -34,18 +34,18 @@ RUN set -eux; \
 ARG bcfips_sha256="5f4d12234904c61c6f12d74b6cf4b3b5d32a2c3375d67367735be000bdd979ab"
 ARG artifact_base="https://artifact-rnd.instana.io/artifactory/instana-private/org/bouncycastle"
 RUN --mount=type=secret,id=artifactory_creds \
-    export ARTIFACTORY_CREDS=jin.song:AKCp8k8PiN21K1uhAEp6oiD3DqqWgBTbgNBvpawE7civHJbVbJNdArc2hw95akB3qKi3pTAxT; \
+    export ARTIFACTORY_CREDS=jin.song:AKCp8k8PiN21K1uhAEp6oiD3DqqWgBTbgNBvpawE7civHJbVbJNdArc2hw95akB3qKi3pTAxT \
     && mkdir -p ${KAFKA_HOME}\
     && wget -q $kafka_distro_base_url/$kafka_version/$kafka_distro \
     && wget -q $kafka_distro_base_url/$kafka_version/$kafka_distro_asc \
     && wget -q $kafka_distro_base_url/KEYS \
     && gpg --import KEYS \
     && gpg --verify $kafka_distro_asc $kafka_distro \
-    && tar -xzf kafka.tgz -C ${KAFKA_HOME} --strip-components=1 \
+    && tar -xzf $kafka_distro -C ${KAFKA_HOME} --strip-components=1 \
     && rm kafka.tgz \
     && rm -rf ${KAFKA_HOME}/bin/windows \
-    && curl -u "$ARTIFACTORY_CREDS" -fsSLo "/opt/instana/kafka/libs/bc-fips-$bcfips_version.jar" "$artifact_base/bc-fips/$bcfips_version/bc-fips-$bcfips_version.jar" \
-    && sha256sum -c - <<< "$bcfips_sha256 /opt/instana/kafka/libs/bc-fips-$bcfips_version.jar"
+    && curl -u "$ARTIFACTORY_CREDS" -fsSLo "${KAFKA_HOME}/libs/bc-fips-$bcfips_version.jar" "$artifact_base/bc-fips/$bcfips_version/bc-fips-$bcfips_version.jar" \
+    && sha256sum -c - <<< "$bcfips_sha256 ${KAFKA_HOME}/libs/bc-fips-$bcfips_version.jar"
 
 #  export ARTIFACTORY_CREDS=$(< /run/secrets/artifactory_creds) \
 
